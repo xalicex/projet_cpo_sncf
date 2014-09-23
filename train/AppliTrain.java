@@ -19,7 +19,7 @@ public class AppliTrain { //trainarrive
 			// machine host au port PORT
 			try {
 ;
-				s = new Socket("172.30.17.154", NUM_PORT_TRAIN);
+				s = new Socket("localhost", NUM_PORT_TRAIN);
 				
 				BufferedReader sin = new BufferedReader (new InputStreamReader(s.getInputStream ( )));
 				PrintWriter sout = new PrintWriter (s.getOutputStream ( ), true);

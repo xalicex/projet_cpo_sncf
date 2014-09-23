@@ -17,10 +17,10 @@ public class AppliGare {
 		
 		Gare gare = new Gare(10);
 		
-		// CrŽation du planning
+		// Crï¿½ation du planning
 		HashMap<Integer, InfoTrain> planning = new HashMap<Integer, InfoTrain>();
-		planning.put(1, new InfoTrain(1, 17, 22));
-		planning.put(2, new InfoTrain(2, 16, 23));
+		planning.put(1, new InfoTrain(1, 17, 16));
+		planning.put(2, new InfoTrain(2, 17, 45));
 		planning.put(3, new InfoTrain(2, 17, 24));
 		planning.put(4, new InfoTrain(3, 17, 10));
 		planning.put(5, new InfoTrain(4, 17, 11));

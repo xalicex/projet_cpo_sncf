@@ -10,6 +10,7 @@ import outilserveur.Service;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 
@@ -44,7 +45,7 @@ public class ServiceGare extends Service{ // La Gare et le reste
 				String line = in.readLine();
 			
 			
-				System.out.println("J'ai reu " + line);
+				System.out.println("J'ai reï¿½u " + line);
 					if(Integer.parseInt(line) > 0 && Integer.parseInt(line) < 99999){
 						//numberformatexception
 						System.out.println("ACCEPTE");
@@ -52,34 +53,34 @@ public class ServiceGare extends Service{ // La Gare et le reste
 						// Si cette ligne est vide, le serveur se termine
 						//if (line == null) break;
 						//if (line.equals("")) break;
-						//out.println("J'ai bien reu " + line);
+						//out.println("J'ai bien reï¿½u " + line);
 						int numTrain = Integer.parseInt(line);
 						
 						if(trainDansPlanning(numTrain)){
-							System.out.println("Client acceptŽ");
+							System.out.println("Client acceptï¿½");
 							out.println("Oui le train est dans le planning");
 							GregorianCalendar temps = new GregorianCalendar();
 							int numQuai = getNumQuai(numTrain);
 							// A FAIRE RENVOYER NUM QUAI
-							
-							//On regarde si c'est il est ˆ la bonne heure
-							System.out.println("TEMPS : " + temps.YEAR + " " + temps.DAY_OF_MONTH + " " + temps.HOUR + " " + temps.MINUTE);
-							System.out.println("TRAIN : " + getHeureTrain(numTrain).YEAR + " " + getHeureTrain(numTrain).DAY_OF_MONTH + " " + getHeureTrain(numTrain).HOUR + " " + getHeureTrain(numTrain).MINUTE);
+							Date test = new Date();
+							//On regarde si c'est il est ï¿½ la bonne heure
+							System.out.println("TEMPS : " + test);
+							System.out.println("TRAIN : " + getHeureTrain(numTrain).toString());
 							int difference = (int) (temps.getTimeInMillis() - getHeureTrain(numTrain).getTimeInMillis());
 							// POSITIF : train en avance
 							System.out.println("Difference : " + difference);
 							//if(difference < 0){
-							if(temps.before(getHeureTrain(numTrain))){
+							if(getHeureTrain(numTrain).before(temps)){
 								System.out.println(" --> TRAIN EN AVANCE");
 								try {
-									Thread.sleep(temps.compareTo(getHeureTrain(numTrain)));
+									Thread.sleep(difference);
 									//Thread.sleep(3000);
 								} catch (InterruptedException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
 								System.out.println(" --> LE TRAIN EST A L HEURE");
-								//Regarder si quai est occupŽ!!!
+								//Regarder si quai est occupï¿½!!!
 								
 								synchronized(gare.getQuai(numQuai)){
 									this.trainEntreEnQuai(numTrain, numQuai);
@@ -91,19 +92,19 @@ public class ServiceGare extends Service{ // La Gare et le reste
 								System.out.println("TROP TARD!!!!");
 							}
 						}else{
-							System.out.println("Client rejetŽ");
+							System.out.println("Client rejetï¿½");
 							out.println("NON casse-toi!");
 						}
 					}else{
 						System.out.println("REJETTE");
-						out.println("NumŽro de train non valide!");
+						out.println("Numï¿½ro de train non valide!");
 					}
 			}
 		} catch (IOException e) {
 			System.err.println("Erreur dans le dialogue des sockets : " + e);
 			e.printStackTrace();
 		} catch (NumberFormatException e) {
-			System.err.println("TRAIN REFUSE : DonnŽe incorrecte - NumŽro de train NON NUMERIQUE : " + e);
+			System.err.println("TRAIN REFUSE : Donnï¿½e incorrecte - Numï¿½ro de train NON NUMERIQUE : " + e);
 		}
 		
 		//finally { try {this.getSocket().close();} catch (IOException e2) {} }
@@ -135,6 +136,6 @@ public class ServiceGare extends Service{ // La Gare et le reste
 		gare.getQuai(numQuai).occuper(planning.get(numTrain).getTemps());
 	}
 	
-	// un train arrive, il envoie son numŽro
-	// "Salut je suis le train 21 et j'arrive au quai n¡3!
+	// un train arrive, il envoie son numï¿½ro
+	// "Salut je suis le train 21 et j'arrive au quai nï¿½3!
 }

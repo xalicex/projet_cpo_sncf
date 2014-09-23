@@ -26,5 +26,21 @@ public class InfoTrain {
 		heure = new GregorianCalendar(0,0,0,h,m);
 		tempsStationnement = tps;
 	}
+
+	public GregorianCalendar getHeurePrevue() {
+		// TODO Auto-generated method stub
+		return heure;
+	}
+
+	public int getNumQuai() {
+		// TODO Auto-generated method stub
+		return quai;
+	}
+
+	public int getTemps() {
+		// TODO Auto-generated method stub
+		return tempsStationnement;
+	}
+	
 }
 
